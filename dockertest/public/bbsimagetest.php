@@ -8,8 +8,8 @@ if (isset($_POST['body'])) {
   if (isset($_FILES['image']) && !empty($_FILES['image']['tmp_name'])) {
     // アップロードされた画像がある場合
     if (preg_match('/^image\//', mime_content_type($_FILES['image']['tmp_name'])) !== 1) {
-      // アップロードされたものが画像ではなかった場合処理を強制的に終了
       header("HTTP/1.1 302 Found");
+      // アップロードされたものが画像ではなかった場合処理を強制的に終了
       header("Location: ./bbsimagetest.php");
       return;
     }
@@ -45,8 +45,8 @@ $select_sth->execute();
 <head>
   <title>画像更新できる掲示板</title>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
 
-<!-- フォームのPOST先はこのファイル自身にする -->
 <form method="POST" action="./bbsimagetest.php" enctype="multipart/form-data">
   <textarea name="body" required></textarea>
   <div style="margin: 1em 0;">
@@ -76,17 +76,26 @@ $select_sth->execute();
 <?php endforeach ?>
 
 <script>
+const option = {
+maxSizeMB:5
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const imageInput = document.getElementById("imageInput");
-  imageInput.addEventListener("change", () => {
+  imageInput.addEventListener("change",async () => {
     if (imageInput.files.length < 1) {
-      // 未選択の場合
       return;
     }
     if (imageInput.files[0].size > 5 * 1024 * 1024) {
-      // ファイルが5MBより多い場合
-      alert("5MB以下のファイルを選択してください。");
-      imageInput.value = "";
+      console.log("aa")
+      const file = imageInput.files[0]
+      const compressedFile = await imageCompression(file,option)
+
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(new File([compressedFile],file.name,{type:compressedFile.type}))
+      imageInput.files = dataTransfer.files;
+      console.log(file.size,compressedFile.size)
+
     }
   });
 });
