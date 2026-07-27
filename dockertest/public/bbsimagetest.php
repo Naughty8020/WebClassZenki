@@ -43,37 +43,46 @@ $select_sth->execute();
 ?>
 
 <head>
+<meta name="viewport" content="width=device-width">
   <title>画像更新できる掲示板</title>
 </head>
 <script src="https://cdn.jsdelivr.net/npm/browser-image-compression@2.0.2/dist/browser-image-compression.js"></script>
+<div style="padding: 10px; max-width:1000px; margin: 0 auto;">
 
-<form method="POST" action="./bbsimagetest.php" enctype="multipart/form-data">
-  <textarea name="body" required></textarea>
+<form method="POST" action="./bbsimagetest.php" enctype="multipart/form-data" style="max-width: 600px; margin: 0 auto; padding: 10px;">
+  <textarea name="body" required style="width: 100%; box-sizing: border-box; height: 100px;"> </textarea>
   <div style="margin: 1em 0;">
-    <input type="file" accept="image/*" name="image" id="imageInput">
+    <input type="file" accept="image/*" name="image" id="imageInput" style="max-width: 100%;">
   </div>
-  <button type="submit">送信</button>
+  <button type="submit" style="padding: 10px 20px; font-size:16px;">送信</button>
 </form>
 
 <hr>
 
 <?php foreach($select_sth as $entry): ?>
-  <dl style="margin-bottom: 1em; padding-bottom: 1em; border-bottom: 1px solid #ccc;">
+
+<div style="display: flex; flex-wrap: wrap; gap: 15px; border-bottom: 1px solid ; align-items: center;">
+
+<div style="flex: 1; min-width: 150px; ">
+  <dl class="post-container" style="margin-bottom: 1em; padding-bottom: 1em; font-size: 16px;">
     <dt>ID</dt>
     <dd><?= $entry['id'] ?></dd>
     <dt>日時</dt>
     <dd><?= $entry['created_at'] ?></dd>
     <dt>内容</dt>
-    <dd>
+    <dd style="margin: 0;">
       <?= nl2br(htmlspecialchars($entry['body'])) // 必ず htmlspecialchars() すること ?>
+    </div>
       <?php if(!empty($entry['image_filename'])): // 画像がある場合は img 要素を使って表示 ?>
-      <div>
-        <img src="/image/<?= $entry['image_filename'] ?>" style="max-height: 10em;">
+      <div style="flex-shrink: 0;">
+        <img class="post-image" src="/image/<?= $entry['image_filename'] ?>" style="height: auto;">
       </div>
       <?php endif; ?>
     </dd>
   </dl>
+</div>
 <?php endforeach ?>
+</div>
 
 <script>
 const option = {
@@ -100,3 +109,22 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+
+<style>
+
+.post-container{
+font-size: 16px;
+}
+.post-image{
+max-width: 250px;
+}
+
+@media(max-width:600px){
+.post-container{
+font-size:13px;
+}
+.post-image{
+max-width:160px;
+}
+}
+</style>
