@@ -4,7 +4,7 @@
 
 ### Clone 
 ``` bash
-git@github.com:Naughty8020/WebClassZenki.git
+git clone git@github.com:Naughty8020/WebClassZenki.git
 ```
 
 ### dockerのインストール
