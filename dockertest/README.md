@@ -2,6 +2,26 @@
 
 ##  使い方
 
+### dockerのインストール
+``` bash
+sudo yum install -y docker
+sudo systemctl start docker
+sudo systemctl enable docker
+```
+
+### デフォルトのユーザー（ec2-user）でもsudoつけずにdockerコマンドを立たけるように、dockerグループに追加
+``` bash
+sudo usermod -a -G docker ec2-user
+```
+
+### Docker Compose インストール
+``` bash
+DOCKER_CONFIG=${DOCKER_CONFIG:-$HOME/.docker}
+mkdir -p $DOCKER_CONFIG/cli-plugins
+curl -SL https://github.com/docker/compose/releases/download/v5.1.2/docker-compose-linux-x86_64 -o $DOCKER_CONFIG/cli-plugins/docker-compose
+chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
+```
+
 ### dockerの起動
 ```bash
 docker compose up
