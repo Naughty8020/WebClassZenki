@@ -80,10 +80,17 @@ CREATE TABLE `bbs_entries` (
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 ```
-
+### データベースの確認
+``` sql
+show databases ;
+```
+### テーブルの確認
+``` sql
+show tables ;
+```
 ### URL
 ```bash
-http://54.80.10.178/bbsimagetest
+http://{ホスト名}/bbsimagetest
 ```
 
 
