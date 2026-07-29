@@ -2,6 +2,11 @@
 
 ##  使い方
 
+### Git インストール
+``` bash
+sudo yum install git -y
+```
+
 ### Clone 
 ``` bash
 git clone git@github.com:Naughty8020/WebClassZenki.git
