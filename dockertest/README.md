@@ -47,6 +47,11 @@ chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 docker compose version
 ```
 
+### プロジェクトフォルダに移動
+``` bash
+cd YourProjectName
+```
+
 ### dockerの起動
 ```bash
 docker compose up
