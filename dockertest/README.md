@@ -22,6 +22,11 @@ curl -SL https://github.com/docker/compose/releases/download/v5.1.2/docker-compo
 chmod +x $DOCKER_CONFIG/cli-plugins/docker-compose
 ```
 
+### インストールできたかどうかの確認
+``` bash
+docker compose version
+```
+
 ### dockerの起動
 ```bash
 docker compose up
