@@ -49,7 +49,7 @@ docker compose version
 
 ### プロジェクトフォルダに移動
 ``` bash
-cd YourProjectName
+cd dockertest
 ```
 
 ### dockerの起動
