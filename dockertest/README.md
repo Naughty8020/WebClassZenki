@@ -2,6 +2,11 @@
 
 ##  使い方
 
+### Clone 
+``` bash
+git@github.com:Naughty8020/WebClassZenki.git
+```
+
 ### dockerのインストール
 ``` bash
 sudo yum install -y docker
