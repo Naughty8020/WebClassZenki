@@ -7,6 +7,16 @@
 sudo yum install git -y
 ```
 
+### GitHub ssh公開鍵の設定
+``` bash
+ssh-keygen -t ed25519
+```
+### 作成したキーの表示
+``` bash
+cat ~/.ssh/id_ed25519.pub
+表示されたキーをGitHubのSSHの設定項目に書き込んでください。
+```
+
 ### Clone 
 ``` bash
 git clone git@github.com:Naughty8020/WebClassZenki.git
