@@ -68,7 +68,7 @@ docker compose up
 
 ### mysqlに入る
 ``` bash
-docker compose exec docker compose exec mysql mysql YOUR_DB_NAME
+docker compose exec mysql mysql example_db
 ```
 
 ### テーブルの作成
